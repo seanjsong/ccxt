@@ -331,7 +331,7 @@ module.exports = class bithumb extends Exchange {
             'address': address,
             'currency': currency['id'],
         };
-        if (currency === 'XRP' || currency === 'XMR') {
+        if (['XRP', 'XMR', 'XLM', 'XEM', 'EOS', 'STEEM', 'GXC', 'IOST'].includes(currency['id'])) {
             const destination = this.safeString (params, 'destination');
             if ((tag === undefined) && (destination === undefined)) {
                 throw new ExchangeError (this.id + ' ' + code + ' withdraw() requires a tag argument or an extra destination param');

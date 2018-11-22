@@ -263,6 +263,10 @@ module.exports = class binance extends Exchange {
             'commonCurrencies': {
                 'BCC': 'BCC', // kept for backward-compatibility https://github.com/ccxt/ccxt/issues/4848
                 'YOYO': 'YOYOW',
+                'BCHABC': 'BCH',
+                'BCHSV': 'BSV',
+                'BQX': 'ETHOS',
+                'GXS': 'GXC'
             },
             // exchange-specific options
             'options': {
