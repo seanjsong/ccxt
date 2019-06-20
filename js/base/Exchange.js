@@ -589,8 +589,8 @@ module.exports = class Exchange {
 
     isJsonEncodedObject (object) {
         return ((typeof object === 'string') &&
-                (object.length >= 2) &&
-                ((object[0] === '{') || (object[0] === '[')))
+                (object.trim().length >= 2) &&
+                ((object.trim()[0] === '{') || (object.trim()[0] === '[')))
     }
 
     getResponseHeaders (response) {
