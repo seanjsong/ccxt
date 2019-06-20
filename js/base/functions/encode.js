@@ -23,10 +23,9 @@ module.exports =
 
     , isJsonEncodedObject: object => (
         (typeof object === 'string') &&
-        (object.length >= 2) &&
-        ((object[0] === '{') || (object[0] === '['))
+        (object.trim().length >= 2) &&
+        ((object.trim()[0] === '{') || (object.trim()[0] === '['))
     )
-
     , stringToBinary: string => CryptoJS.enc.Latin1.parse (string)
     , stringToBase64: string => CryptoJS.enc.Latin1.parse (string).toString (CryptoJS.enc.Base64)
     , base64ToBinary: string => CryptoJS.enc.Base64.parse (string)
