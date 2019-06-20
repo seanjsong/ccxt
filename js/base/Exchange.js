@@ -566,6 +566,7 @@ module.exports = class Exchange {
             throw new ErrorClass ([ this.id, method, url, code, reason, body ].join (' '))
         }
     }
+    
 
     getResponseHeaders (response) {
         const result = {}
