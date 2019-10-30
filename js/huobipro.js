@@ -255,6 +255,7 @@ module.exports = class huobipro extends Exchange {
             },
         });
     }
+    
 
     async fetchTradingLimits (symbols = undefined, params = {}) {
         // this method should not be called directly, use loadTradingLimits () instead
