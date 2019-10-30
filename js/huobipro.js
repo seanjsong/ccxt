@@ -163,7 +163,7 @@ module.exports = class huobipro extends Exchange {
             },
             'commonCurrencies': {
                 'HOT': 'Hydro Protocol', // conflict with HOT (Holo) https://github.com/ccxt/ccxt/issues/4929
-                'WAXP': 'WAX
+                'WAXP': 'WAX'
             },
         });
     }
