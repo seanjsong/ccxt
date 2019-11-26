@@ -2491,6 +2491,7 @@ module.exports = class okex extends Exchange {
         } else if (this.password) {
             request['trade_pwd'] = this.password;
         }
+        
         const query = this.omit (params, [ 'fee', 'password', 'trade_pwd' ]);
         if (!('trade_pwd' in request)) {
             throw new ExchangeError (this.id + ' withdraw() requires this.password set on the exchange instance or a password / trade_pwd parameter');
