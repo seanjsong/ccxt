@@ -893,14 +893,19 @@ module.exports = class bithumb extends Exchange {
             'address': address,
             'currency': currency['id'],
         };
-        if (['XRP', 'XMR', 'XLM', 'XEM', 'EOS', 'STEEM', 'GXC', 'IOST', 'WAXP'].includes(currency['id'])) {
-            const destination = this.safeString (params, 'destination');
-            if ((tag === undefined) && (destination === undefined)) {
-                throw new ArgumentsRequired (this.id + ' ' + code + ' withdraw() requires a tag argument or an extra destination param');
-            } else if (tag !== undefined) {
-                request['destination'] = tag;
+        if (tag) {
+            if (['XRP', 'XMR', 'XLM', 'XEM', 'EOS', 'STEEM', 'GXC', 'IOST', 'WAXP'].includes(currency['id'])) {
+                const destination = this.safeString (params, 'destination');
+                if ((tag === undefined) && (destination === undefined)) {
+                    throw new ExchangeError (this.id + ' ' + code + ' withdraw() requires a tag argument or an extra destination param');
+                } else if (tag !== undefined) {
+                    request['destination'] = tag;
+                }
+            } else {
+                throw new ExchangeError ('unknown withdraw address with tag');
             }
         }
+            
         const response = await this.privatePostTradeBtcWithdrawal (this.extend (request, params));
         return {
             'info': response,
