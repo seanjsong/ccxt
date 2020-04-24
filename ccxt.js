@@ -137,6 +137,7 @@ const exchanges = {
     'lykke':                   require ('./js/lykke.js'),
     'mercado':                 require ('./js/mercado.js'),
     'mixcoins':                require ('./js/mixcoins.js'),
+    'mxc':                     require ('./js/mxc.js'),
     'ndax':                    require ('./js/ndax.js'),
     'novadax':                 require ('./js/novadax.js'),
     'oceanex':                 require ('./js/oceanex.js'),
