@@ -453,6 +453,7 @@ module.exports = class binance extends Exchange {
             };
             const status = this.safeString (market, 'status');
             const active = (status === 'TRADING');
+            if (!active) continue; // do not include unlisted pairs in markets
             const entry = {
                 'id': id,
                 'lowercaseId': lowercaseId,
