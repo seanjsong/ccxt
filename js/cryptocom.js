@@ -436,7 +436,7 @@ module.exports = class cryptocom extends Exchange {
         const orderType = (type === 'limit') ? 1 : 2;
         const request = {
             'symbol': market['id'].replace('_', '').toLowerCase(),
-            'volume': this.amountToPrecision (symbol, amount),
+            'volume': type === 'market' && side === 'buy' ? +amount.toFixed(8) : this.amountToPrecision (symbol, amount),
             'side': side.toUpperCase (),
             'type': orderType,
         };
