@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------------------
 
 const Exchange = require ('./base/Exchange');
-const { ExchangeError, ExchangeNotAvailable, AuthenticationError, ArgumentsRequired } = require ('./base/errors');
+const { ExchangeError, ExchangeNotAvailable, AuthenticationError, ArgumentsRequired, InvalidOrder } = require ('./base/errors');
 // ---------------------------------------------------------------------------
 
 module.exports = class cryptocom extends Exchange {
@@ -434,9 +434,12 @@ module.exports = class cryptocom extends Exchange {
         await this.loadMarkets ();
         const market = this.market (symbol);
         const orderType = (type === 'limit') ? 1 : 2;
+        if (type === 'market' && side === 'buy' && price === undefined) {
+            throw new InvalidOrder (this.id + " createMarketBuyOrder() requires both amount and price arguments");
+        }
         const request = {
             'symbol': market['id'].replace('_', '').toLowerCase(),
-            'volume': type === 'market' && side === 'buy' ? +amount.toFixed(8) : this.amountToPrecision (symbol, amount),
+            'volume': type === 'market' && side === 'buy' ? +(amount * price).toFixed(8) : this.amountToPrecision (symbol, amount),
             'side': side.toUpperCase (),
             'type': orderType,
         };
