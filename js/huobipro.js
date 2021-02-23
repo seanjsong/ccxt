@@ -1045,7 +1045,8 @@ module.exports = class huobipro extends Exchange {
                     // more about it here: https://github.com/ccxt/ccxt/pull/4395
                     // we use priceToPrecision instead of amountToPrecision here
                     // because in this case the amount is in the quote currency
-                    request['amount'] = this.costToPrecision (symbol, parseFloat (amount) * parseFloat (price));
+                    // re-refix: comments above are all wrong, I'm just fixing it to 8 digit, which should work for BTC and USDT base currency
+                    request['amount'] = +(parseFloat (amount) * parseFloat (price)).toFixed(8);
                 }
             } else {
                 request['amount'] = this.costToPrecision (symbol, amount);
