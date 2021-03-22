@@ -48,7 +48,7 @@ module.exports = class bithumb extends Exchange {
                         'ticker/all',
                         'ticker/ALL_BTC',
                         'ticker/ALL_KRW',
-                        'orderbook/{currency}',
+                        'orderbook/{currency}_{paymentcurrency}',
                         'orderbook/all',
                         'transaction_history/{currency}',
                         'transaction_history/all',
@@ -211,11 +211,12 @@ module.exports = class bithumb extends Exchange {
         const market = this.market (symbol);
         const request = {
             'currency': market['base'],
+            'paymentcurrency': market['quote'],
         };
         if (limit !== undefined) {
             request['count'] = limit; // default 30, max 30
         }
-        const response = await this.publicGetOrderbookCurrency (this.extend (request, params));
+        const response = await this.publicGetOrderbookCurrencyPaymentcurrency (this.extend (request, params));
         //
         //     {
         //         "status":"0000",
