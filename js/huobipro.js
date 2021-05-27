@@ -1146,11 +1146,11 @@ module.exports = class huobipro extends Exchange {
                 } else {
                     // despite that cost = amount * price is in quote currency and should have quote precision
                     // the exchange API requires the cost supplied in 'amount' to be of base precision
-                    // more about it here: https://github.com/ccxt/ccxt/pull/4395
-                    // we use priceToPrecision instead of amountToPrecision here
-                    // because in this case the amount is in the quote currency
-                    // re-refix: comments above are all wrong, I'm just fixing it to 8 digit, which should work for BTC and USDT base currency
-                    request['amount'] = +(parseFloat (amount) * parseFloat (price)).toFixed(8);
+                    // more about it here:
+                    // https://github.com/ccxt/ccxt/pull/4395
+                    // https://github.com/ccxt/ccxt/issues/7611
+                    // we use amountToPrecision here because the exchange requires cost in base precision
+                    request['amount'] = this.costToPrecision (symbol, parseFloat (amount) * parseFloat (price));
                 }
             } else {
                 request['amount'] = this.costToPrecision (symbol, amount);
