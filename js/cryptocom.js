@@ -456,8 +456,8 @@ module.exports = class cryptocom extends Exchange {
         //    }
         const data = this.safeValue (response, 'data', {});
         const order = this.parseOrder (data, market);
-        const id = data['order_id'];
-        this.orders[id] = order;
+        // const id = data['order_id'];
+        // this.orders[id] = order;
         return order;
     }
 
